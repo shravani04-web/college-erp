@@ -1,0 +1,24 @@
+
+name: College ERP CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verify:
+    name: Verify repository
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: List repository contents
+        run: |
+          echo "College ERP CI/CD workflow is running"
+          ls -la
