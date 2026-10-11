@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College ERP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =====================================================
+       1. LOGIN SCREEN (shown first)
+       ===================================================== -->
+  <section id="login-screen">
+    <div class="login-card">
+      <div class="login-logo">🎓</div>
+      <h1>College ERP</h1>
+      <p class="muted">Sign in to your account</p>
+
+      <form id="login-form">
+        <label for="login-role">Login as</label>
+        <select id="login-role">
+          <option value="student">Student</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        <label for="login-id">Student ID or username</label>
+        <input type="text" id="login-id" placeholder="e.g. STU001" required>
+
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="Enter your password" required>
+
+        <p id="login-error" class="error-text"></p>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </form>
+
+      <div class="demo-box">
+        <strong>Demo accounts</strong>
+        <p>Student: <code>STU001</code> / <code>student123</code></p>
+        <p>Admin: <code>admin</code> / <code>admin123</code></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       2. MAIN APP (sidebar + top bar + page content)
+       ===================================================== -->
+  <div id="app" class="hidden">
+
+    <aside id="sidebar">
+      <div class="brand">🎓 <span>College ERP</span></div>
+      <nav id="nav-menu"></nav>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </aside>
+    <div id="overlay" onclick="closeSidebar()"></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" onclick="toggleSidebar()" aria-label="Open menu">☰</button>
+        <h2 id="page-title">Dashboard</h2>
+        <div class="user-info">
+          <span id="user-name"></span>
+          <span id="user-role" class="badge badge-blue"></span>
+        </div>
+      </header>
+
+      <!-- Every page is drawn into this container by script.js -->
+      <main id="content"></main>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       3. POP-UP FORM (used for all "Add" and "Edit" forms)
+       ===================================================== -->
+  <div id="modal" class="modal hidden" onclick="if (event.target === this) closeModal()">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modal-title"></h3>
+        <button class="icon-btn" onclick="closeModal()" aria-label="Close">✕</button>
+      </div>
+      <form id="modal-form">
+        <div id="modal-body"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-light" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Small message that appears at the bottom of the screen -->
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
